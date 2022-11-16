@@ -3,6 +3,7 @@ import time
 import datetime
 import schedule
 
+#### General purpase method to spin motor
 def turnMotor() :
     print("Rotate to dispense food.")
 
@@ -18,6 +19,7 @@ def turnMotor() :
     time.sleep(1)
     servo.ChangeDutyCycle(0)
 
+#### Method that controls dispensing of food for fish
 def initMotorOnAndDispense() :
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(11,GPIO.OUT)
@@ -27,9 +29,16 @@ def initMotorOnAndDispense() :
     servo.start(0)
     print ("Waiting for 1 second")
     time.sleep(1)
+
+    turnMotor() #Call turning method to dispense food
+
     Servo.stop()
     GPIO.cleanup()
     print ("Everything's cleaned up")
 
-def main():
-    schedule.every().day.at("01:00").do(initMotorOnAndDispense,'It is 01:00')
+#Set scheduler to run at given time
+schedule.every().day.at("12:00").do(initMotorOnAndDispense,'It is 01:00')
+
+while True:
+    schedule.run_pending()
+    time.sleep(60) #Wait 1 minutes
