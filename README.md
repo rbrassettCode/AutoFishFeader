@@ -6,3 +6,8 @@ This project requires:
     mini server motor
     some form of mount for the motor/food
     a default email address to send the notifications to
+
+
+Using this ressource to take care of the email fetching
+
+https://raspberry-projects.com/pi/software_utilities/email/fetchmail-to-receive-email
